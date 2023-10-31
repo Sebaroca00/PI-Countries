@@ -1,15 +1,9 @@
 const express = require('express');
-const router = express.Router();
-const { Country } = require('../db');
+const { getCountriesHandler, getDetailHandler } = require('../handlers/countryHandlers');
 
-router.get('/', async (req, res) => {
-  try {
-    const countries = await Country.findAll();
-    res.json(countries);
-  } catch (error) {
-    console.error('Error al consultar países:', error);
-    res.status(500).json({ error: 'Error al consultar países' });
-  }
-});
+const router = express.Router();
+
+router.get("/", getCountriesHandler);
+router.get("/id", getDetailHandler);
 
 module.exports = router;

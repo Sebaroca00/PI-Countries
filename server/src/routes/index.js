@@ -6,6 +6,6 @@ const activityRouter = require('./activityRouter');   // Importa el enrutador de
 
 // Usa los enrutadores para las rutas relacionadas
 router.use('/countries', countriesRouter);
-router.use('/activity', activityRouter);
+router.use('/activities', activityRouter);
 
 module.exports = router;

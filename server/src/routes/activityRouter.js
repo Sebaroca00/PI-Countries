@@ -1,9 +1,9 @@
-// En routes/activityRouter.js
-
-const express = require('express');
+const express = require("express");
+const { createActivityHandler } = require("../handlers/activityHandler"); // Asegúrate de que estás importando el manejador correcto
 const router = express.Router();
-// Importa los modelos o cualquier cosa relacionada con las actividades
 
-// Define las rutas relacionadas con las actividades
+// Ruta para crear una actividad
+router.post("/", createActivityHandler);
 
 module.exports = router;
+
