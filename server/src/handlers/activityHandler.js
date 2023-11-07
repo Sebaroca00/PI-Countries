@@ -1,16 +1,21 @@
-const { createActivityDB } = require("../controllers/activityController");
+const { createActivityDB, getActivities } = require("../controllers/activityController");
 
-const createActivityHandler = async (req, res) => { // Reordena los parámetros req y res
-    const { name, difficulty, duration, season } = req.body;
-
+const createActivityHandler = async (req, res) => {
+    const { name, difficulty, duration, season, countryCodes } = req.body;
+  
     try {
-        const response = await createActivityDB(name, difficulty, duration, season);
-        res.status(200).json(response);
+      const response = await createActivityDB(name, difficulty, duration, season, countryCodes);
+      res.status(200).json(response);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+      res.status(400).json({ error: error.message });
     }
-};
+  };
+  const getActivitiesHandler = (req, res) => {
+    getActivities(req, res);
+  };
+    
 
 module.exports = {
-    createActivityHandler
+    createActivityHandler,
+    getActivitiesHandler
 };

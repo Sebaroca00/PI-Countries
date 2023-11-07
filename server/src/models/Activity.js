@@ -15,16 +15,14 @@ module.exports = (sequelize) => {
       },
     },
     duration: {
-      type: DataTypes.FLOAT, 
-      allowNull: true, 
+      type: DataTypes.FLOAT,
+      allowNull: true,
     },
     season: {
       type: DataTypes.ENUM('Verano', 'Otoño', 'Invierno', 'Primavera'),
       allowNull: false,
     },
   });
-
-
 
   return Activity;
 };

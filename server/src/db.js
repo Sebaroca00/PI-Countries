@@ -34,8 +34,9 @@ const { Country} = sequelize.models;
 const { Activity} = sequelize.models;
 
 // Aca vendrian las relaciones
-Country.belongsToMany(Activity, { through: 'CountryActivity', as: 'Activity', foreignKey: 'CountryId' });
-Activity.belongsToMany(Country, { through: 'CountryActivity', as: 'Countrys', foreignKey: 'ActivityId' });
+Country.belongsToMany(Activity, { through: 'CountryActivity', as: 'activities', foreignKey: 'CountryId' });
+Activity.belongsToMany(Country, { through: 'CountryActivity', as: 'countries', foreignKey: 'ActivityId' });
+
 // Product.hasMany(Reviews);
 
 module.exports = {
