@@ -2,6 +2,7 @@ const { getCountryByName, getCountryById, loadCountriesToDatabase, getAllCountri
 
 const getAllCountriesHandler = async (req, res) => {
     try {
+        
         const countries = await getAllCountries();
         res.status(200).json(countries);
       } catch (error) {
