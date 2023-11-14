@@ -15,6 +15,7 @@ const loadCountriesToDatabase = async () => {
       // Crear un nuevo país en la base de datos
       await Country.create(transformedData);
 
+
       console.log(`País "${transformedData.code}" guardado en la base de datos`);
     }
   } catch (error) {

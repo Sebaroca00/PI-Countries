@@ -1,0 +1,63 @@
+.cartas {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    align-content: space-around;
+    margin: 2px;
+    /*padding-bottom: 16px;*/
+    background-color: #d19d7800; /* Marrón oscuro, relacionado con el pelaje de perros */
+    transition: transform 1.6s ease; /* Agrega una transición para suavizar el movimiento */
+  }
+  
+  .cartas:hover {
+    transform: translateY(-5px); /* Eleva ligeramente el componente al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra para dar profundidad */
+  }
+  
+  .allDatos {
+    display: flex;
+    background-color: rgb(187, 159, 100);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+  }
+  .image{
+    
+    border-top-right-radius:5px ;
+    border-top-left-radius:5px ;
+  }
+  .nombre {
+    text-align: center;
+    color: #000; /* Negro */
+    text-decoration: none;
+    transition: color 1.0s ease; /* Agrega una transición suave al color del texto */
+  }
+  
+  .nombre:hover {
+    color: #ffffff; /* Cambia el color del texto al pasar el ratón */
+    border-color: #000; /* Negro */
+  }
+  
+  .datos {
+
+        text-align: left;
+        padding-left: 12px;
+        margin-top: 10px;
+        background-color: #00000028;
+        border-radius: 3px;
+        padding: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .datos:hover {
+        transform: translateY(-2px); /* Eleva ligeramente el componente al pasar el ratón */
+        box-shadow: 2 2px 2px rgba(0, 0, 0, 0.2); /* Agrega una sombra para dar profundidad */
+      }
+  

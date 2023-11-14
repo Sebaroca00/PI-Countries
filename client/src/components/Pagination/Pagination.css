@@ -1,0 +1,28 @@
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pagination-controls button {
+
+    margin: 0 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f1d8a8;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .pagination-controls button.active {
+    background-color: #000000; /* Cambia el color de fondo cuando está seleccionado */
+    color: #ffffff; /* Cambia el color del texto cuando está seleccionado */
+  }
+  
+  .pagination-controls button[disabled] {
+    background-color: #000000;
+    cursor: not-allowed;
+  }
+  

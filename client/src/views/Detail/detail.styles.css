@@ -1,0 +1,83 @@
+/* detail.styles.css */
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #ccaf79, #ccaf79 20px, transparent 250px, transparent);
+    color: #F5DEB3; /* Texto blanco para contrastar con el fondo oscuro */
+  }
+  
+  .detail-header2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 48px;
+    color: #000; /* Negro */
+    font-family: "Bigelow Rules";
+  }
+
+  .detail-header {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 76px;
+    color: #000; /* Negro */
+    font-family: "Bigelow Rules";
+  }
+  
+  .detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .detail-image {
+    border-radius: 5px;
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .detail-image:hover {
+    transform:  scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .detail-info {
+    text-align: center;
+    margin-top: 10px;
+    background-color: #0807072c;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .detail-info p {
+    margin: 5px 0;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color: #ccaf79; /* Puedes ajustar el color de fondo según tus preferencias */
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  }
+  
+  .detail-info:hover {
+    background-color: #5a452e; /* Cambia el color de fondo al hacer hover */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+  }
+  
+  .detail-info p:hover {
+    background-color: #8b6f4d; /* Cambia el color de fondo al hacer hover en los párrafos */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    font-size: 16px; /* Ajusta el tamaño del texto al hacer hover */
+  }
+  
+
+  /* Add more styles as needed */
+  
