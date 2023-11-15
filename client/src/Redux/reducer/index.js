@@ -41,36 +41,36 @@ function rootReducer(state = initialState, action) {
     ...state,
     detailedCountry: action.payload, // Cambia allCountriesCopy a detailedCountry o el nombre que prefieras
   };
-    case GET_ACTIVITY:
-      return {
-        ...state,
-        temperaments: action.payload,
-      };
+  case GET_ACTIVITY:
+    return {
+      ...state,
+      activities: action.payload,
+    };
       case FILTER_BY_CONTINENT:
-      const { continent } = action.payload;
-      const filteredByContinent = state.allCountries.filter(country => country.continent === continent);
-      return {
-        ...state,
-        filteredCountries: filteredByContinent,
-        filters: {
-          ...state.filters,
-          continent,
-        },
-      };
+        const { continent } = action.payload;
+        const filteredByContinent = state.allCountries.filter(country => country.continent === continent);
+        return {
+          ...state,
+          filteredCountries: filteredByContinent,
+          filters: {
+            ...state.filters,
+            continent,
+          },
+        };
 
-    case FILTER_BY_ACTIVITY:
-      const { activity } = action.payload;
-      const filteredByActivity = state.allCountries.filter(country =>
-        country.activities.some(a => a.name === activity)
-      );
-      return {
-        ...state,
-        filteredCountries: filteredByActivity,
-        filters: {
-          ...state.filters,
-          activity,
-        },
-      };
+        case FILTER_BY_ACTIVITY:
+          const { activity } = action.payload;
+          const filteredByActivity = state.allCountries.filter((country) =>
+            country.activities.some((a) => a.name === activity)
+          );
+          return {
+            ...state,
+            filteredCountries: filteredByActivity,
+            filters: {
+              ...state.filters,
+              activity,
+            },
+          };
 
     case ORDER_BY:
       const { field, direction } = action.payload;

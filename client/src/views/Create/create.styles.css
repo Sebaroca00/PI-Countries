@@ -1,5 +1,4 @@
 .formConteiner {
-    min-width: 300px; /* Establece un ancho mínimo */
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -21,17 +20,16 @@
 
 
 
-.formdiv{
-
-    padding-top: 0px;
-    padding-left: 400px;
-    padding-right: 400px;
-    color: #fff;
-    border-radius: 5px;
-    transition: border-color 0.8s, transform 0.3s, box-shadow 0.3s;
+.formdiv {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 600px;
+  background-color: #ccaf79;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgb(116 78 20 / 87%);
 }
 .form:hover {
-    border-color: #007bff;
+    border-color: rgb(52, 138, 230);
     transform: translate(0, -10px);
     box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); 
   }
@@ -73,7 +71,7 @@
   }
   
   .boton:hover {
-    background-color: rgb(221, 148, 65);
+    background-color: #a76d44;
   }
   .botonEliminar {
     background-color: #ff0000;
@@ -185,7 +183,7 @@ background-color: #000000;
     cursor: pointer;
   }
   .success-message {
-    background-color: greenyellow;
+    background-color: #ccaf79;
     color: black;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
@@ -207,4 +205,29 @@ background-color: #000000;
       width: 100%;
     }
   }
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
   
+  .modal button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .succes-message{
+    color: #000;
+  }

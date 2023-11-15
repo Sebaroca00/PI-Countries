@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../Redux/actions";
 import { getCountries } from "../../Redux/actions";
+import Modal from 'react-modal';
 import "./create.styles.css";
+
+Modal.setAppElement('#root');
 
 function Create() {
   const dispatch = useDispatch();
@@ -10,14 +13,14 @@ function Create() {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [successMessage, setSuccessMessage] = useState(""); // Nuevo estado para el mensaje de éxito
+  const [successMessage, setSuccessMessage] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
 
   useEffect(() => {
-    // Filtrar países basándose en el término de búsqueda
     const filtered = countries.filter((country) =>
       country.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -38,19 +41,18 @@ function Create() {
     season: "",
   });
 
-  const validate = (input) => {
+  const validate = () => {
     const newError = {
       name: "",
       difficulty: "",
       duration: "",
       season: "",
-      countryCodes: [],
     };
-  
+
     if (!input.name.trim()) {
       newError.name = "Nombre es requerido";
     }
-  
+
     if (!input.difficulty.trim()) {
       newError.difficulty = "Dificultad es requerida";
     } else {
@@ -59,25 +61,27 @@ function Create() {
         newError.difficulty = "La dificultad debe estar en el rango de 1 a 5";
       }
     }
-  
+
     if (!input.duration.trim()) {
       newError.duration = "Duración es requerida";
     } else if (parseFloat(input.duration) > 4) {
       newError.duration = "La duración no puede ser mayor a 4 horas";
     }
-  
+
     if (!input.season.trim()) {
       newError.season = "Temporada es requerida";
     }
-  
+
     setError(newError);
+
+    // Devuelve true si no hay errores, de lo contrario, false
+    return Object.values(newError).every((val) => val === "");
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === "countries") {
-      // Obtener el código del país en lugar del nombre
       const countryCode = countries.find((country) => country.name === value)?.code;
       setSelectedCountries([...selectedCountries, countryCode]);
     } else if (name === "search") {
@@ -89,47 +93,41 @@ function Create() {
       });
     }
 
-    validate({
-      ...input,
-      [name]: value,
-    });
+    validate(); // No es necesario pasar el objeto completo aquí
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
-  
-    validate(input);
-    const formData = {
-      ...input,
-      countryCodes: selectedCountries,
-    };
-  
+
+    // Validar campos antes de enviar
+    if (!validate()) {
+      setModalIsOpen(true);
+      setSuccessMessage("Faltan completar campos");
+      return;
+    }
+
     try {
-      if (!error.name && !error.difficulty && !error.duration && !error.season) {
-        console.log("Datos enviados:", formData);
-  
-        await dispatch(postActivities(formData));
-        setSuccessMessage("Actividad creada con éxito");
-        // Limpiar el formulario después de un éxito si es necesario
-        setInput({
-          name: "",
-          difficulty: "",
-          duration: "",
-          season: "",
-          countryCodes: [],
-        });
-        setSelectedCountries([]);
-      } else {
-        // Limpiar el mensaje de éxito si hay errores de validación
-        setSuccessMessage("");
-      }
+      const formData = {
+        ...input,
+        countryCodes: selectedCountries,
+      };
+
+      await dispatch(postActivities(formData));
+      setSuccessMessage("Actividad creada con éxito");
+      setModalIsOpen(true);
+      setInput({
+        name: "",
+        difficulty: "",
+        duration: "",
+        season: "",
+        countryCodes: [],
+      });
+      setSelectedCountries([]);
     } catch (error) {
       console.error("Error al crear actividad:", error);
-      // Limpiar el mensaje de éxito en caso de error
-      setSuccessMessage("");
+      setSuccessMessage(""); // Limpia el mensaje de éxito en caso de error
     }
   };
-  
 
   const removeSelectedCountry = (selectedCountry) => {
     setSelectedCountries(
@@ -137,6 +135,15 @@ function Create() {
     );
   };
 
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+  
+  const modalStyle = {
+    content: {
+      color: successMessage, // Cambia el color del texto según el tipo de mensaje
+    },
+  };
   return (
     <div className="formConteiner">
       <h1>CREA TU ACTIVIDAD TURÍSTICA</h1>
@@ -228,14 +235,20 @@ function Create() {
               ))}
             </ul>
           </div>
-          {successMessage && (
-        <div >
-          <p className="success-message">{successMessage}</p>
-        </div>
-      )}
           <button className="boton" type="submit">
-            Crear
-          </button>
+          Crear
+        </button>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Mensaje de éxito"
+          className="modal"
+          style={modalStyle}
+        >
+  
+          <p className="success-message">{successMessage}</p>
+          <button onClick={closeModal}>Aceptar</button>
+        </Modal>
         </div>
       </form>
     </div>

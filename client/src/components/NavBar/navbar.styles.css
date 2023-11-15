@@ -1,67 +1,90 @@
-.conteiner{
-  display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-  
+.navbar {
+    display: flex;
+    flex-direction: column;
     margin: 8px;
+    align-items: center;
 }
 
 .barra {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Para centrar el contenido en el eje vertical */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.barra-input {
+  flex: 1;
+  border: none;
   padding: 10px;
-    display: flex;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .barra-input {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  .barra-btn {
-    background-color: #F5DEB3;
-    border: none;
-    color: #000000;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .barra-btn:hover {
-    background-color: #8B4513;
-  }
-  
-  .fa-search {
-    font-size: 18px;
-  }
+  font-size: 16px;
+  outline: none;
+}
 
+.barra-btn {
+  background-color: #F5DEB3;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+  border-radius: 5px;  /* Puntas redondeadas */
+}
 
-  .button-create{
-    margin: 2px;
-    background-color: #F5DEB3;
-    border: none;
-    color: #000000;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    transition: background-color 0.3s;
+.barra-btn:hover {
+  background-color: #8B4513;
+}
 
-  }
- .barra-link{
-color: #000000;
+.navbar-button{ 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.button-create {
+  padding: 16px;
+  margin: 8px; 
+  margin-left: 16px;
+  margin-right: 16px;
+  background-color: #F5DEB3;
+  border: none;
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;  /* Puntas redondeadas */
+}
+
+.button-create:hover {
+  background-color: #a76d44;
+}
+
+.button-filter {
+  margin-top: 8px; 
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: #F5DEB3;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+  border-radius: 5px;  /* Puntas redondeadas */
+}
+
+.button-filter:hover {
+  background-color: #aa6f45;
+}
+
+.barra-link {
+  color: #000000;
   text-decoration: none;
-  }
-
-  
-  .button-create:hover {
-    background-color: #8B4513;
-  }
-  
+}
