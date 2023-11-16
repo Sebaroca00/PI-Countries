@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../Redux/actions";
 import { getCountries } from "../../Redux/actions";
+import validate from  './validate'
 import Modal from 'react-modal';
 import "./create.styles.css";
 
@@ -41,93 +42,64 @@ function Create() {
     season: "",
   });
 
-  const validate = () => {
-    const newError = {
+  const validateForm = () => {
+    const newError = validate(input, selectedCountries);
+    setError(newError);
+
+    return Object.values(newError).every((val) => val === "");
+  };
+
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  if (name === "countries") {
+    const countryCode = countries.find((country) => country.name === value)?.code;
+    setSelectedCountries([...selectedCountries, countryCode]);
+  } else if (name === "search") {
+    setSearchTerm(value);
+  } else {
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  }
+
+  validateForm();
+};
+
+const submitHandler = async (event) => {
+  event.preventDefault();
+
+
+  if (!validateForm()) {
+    setModalIsOpen(true);
+    setSuccessMessage("Faltan completar campos");
+    return;
+  }
+
+  try {
+    const formData = {
+      ...input,
+      countryCodes: selectedCountries,
+    };
+
+    await dispatch(postActivities(formData));
+    setSuccessMessage("Actividad creada con éxito");
+    setModalIsOpen(true);
+    setInput({
       name: "",
       difficulty: "",
       duration: "",
       season: "",
-    };
-
-    if (!input.name.trim()) {
-      newError.name = "Nombre es requerido";
-    }
-
-    if (!input.difficulty.trim()) {
-      newError.difficulty = "Dificultad es requerida";
-    } else {
-      const difficultyValue = parseInt(input.difficulty);
-      if (isNaN(difficultyValue) || difficultyValue < 1 || difficultyValue > 5) {
-        newError.difficulty = "La dificultad debe estar en el rango de 1 a 5";
-      }
-    }
-
-    if (!input.duration.trim()) {
-      newError.duration = "Duración es requerida";
-    } else if (parseFloat(input.duration) > 4) {
-      newError.duration = "La duración no puede ser mayor a 4 horas";
-    }
-
-    if (!input.season.trim()) {
-      newError.season = "Temporada es requerida";
-    }
-
-    setError(newError);
-
-    // Devuelve true si no hay errores, de lo contrario, false
-    return Object.values(newError).every((val) => val === "");
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "countries") {
-      const countryCode = countries.find((country) => country.name === value)?.code;
-      setSelectedCountries([...selectedCountries, countryCode]);
-    } else if (name === "search") {
-      setSearchTerm(value);
-    } else {
-      setInput({
-        ...input,
-        [name]: value,
-      });
-    }
-
-    validate(); // No es necesario pasar el objeto completo aquí
-  };
-
-  const submitHandler = async (event) => {
-    event.preventDefault();
-
-    // Validar campos antes de enviar
-    if (!validate()) {
-      setModalIsOpen(true);
-      setSuccessMessage("Faltan completar campos");
-      return;
-    }
-
-    try {
-      const formData = {
-        ...input,
-        countryCodes: selectedCountries,
-      };
-
-      await dispatch(postActivities(formData));
-      setSuccessMessage("Actividad creada con éxito");
-      setModalIsOpen(true);
-      setInput({
-        name: "",
-        difficulty: "",
-        duration: "",
-        season: "",
-        countryCodes: [],
-      });
-      setSelectedCountries([]);
-    } catch (error) {
-      console.error("Error al crear actividad:", error);
-      setSuccessMessage(""); // Limpia el mensaje de éxito en caso de error
-    }
-  };
+      countryCodes: [],
+    });
+    setSelectedCountries([]);
+  } catch (error) {
+    console.error("Error al crear actividad:", error);
+    setSuccessMessage(""); // Limpia el mensaje de éxito en caso de error
+  }
+};
 
   const removeSelectedCountry = (selectedCountry) => {
     setSelectedCountries(
@@ -208,17 +180,18 @@ function Create() {
               value={searchTerm}
               onChange={handleChange}
             />
-            <select name="countries" className="input" onChange={handleChange}>
-              <option className="container" value="">
-                Selecciona un país
-              </option>
-              {filteredCountries.map((country) => (
-                <option className="container" key={country.code} value={country.name}>
-                  {country.code} - {country.name}
-                </option>
-              ))}
-            </select>
-          </div>
+                <select name="countries" className="input" onChange={handleChange}>
+          <option className="container" value="">
+            Selecciona un país
+          </option>
+          {filteredCountries.map((country) => (
+            <option className="container" key={country.code} value={country.name}>
+              {country.code} - {country.name}
+            </option>
+          ))}
+        </select>
+        <span className="errors">{error.country}</span> {/* Nuevo campo de error */}
+      </div>
           <div className="selected-countries">
             <p className="container2">Países Seleccionados:</p>
             <ul>
@@ -245,7 +218,6 @@ function Create() {
           className="modal"
           style={modalStyle}
         >
-  
           <p className="success-message">{successMessage}</p>
           <button onClick={closeModal}>Aceptar</button>
         </Modal>

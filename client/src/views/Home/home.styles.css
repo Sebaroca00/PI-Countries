@@ -34,7 +34,7 @@ body {
     font-family: Arial, sans-serif;
 }
 .home2{
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
     max-width: 1200px; /* O cualquier otro valor máximo que desees */
     height: 300px;

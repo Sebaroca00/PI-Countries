@@ -30,11 +30,11 @@ function Detail() {
           <img className="detail-image" src={country.flagImage} alt={`Bandera de ${country.name}`} />
           <div className="detail-info">
             <p>ID: {country.code}</p>
-            <p>Continente: {country.continent}</p>
-            <p>Capital: {country.capital}</p>
-            {country.subregion && <p>Subregión: {country.subregion}</p>}
-            {country.area && <p>Área: {country.area} km²</p>}
-            <p>Población: {country.population} de habitantes</p>
+            <p>Continente: {country.continent || 'Información no disponible'}</p>
+            <p>Capital: {country.capital || 'Información no disponible'}</p>
+            <p>Subregión: {country.subregion || 'Información no disponible'}</p>
+            <p>Área: {country.area ? `${country.area} km²` : 'Información no disponible'}</p>
+            <p>Población: {country.population ? `${country.population} habitantes` : 'Información no disponible'}</p>
           </div>
         </div>
       )}
