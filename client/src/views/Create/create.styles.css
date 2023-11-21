@@ -7,7 +7,7 @@
     padding: 20px;
     font-family: "Bigelow Rules";
     background: linear-gradient(to bottom, #ccaf79, #ccaf79 20px, transparent 250px, transparent);
-    color: #000000; /* Texto blanco para contrastar con el fondo oscuro */
+    color: #000000;
   }
 
 
@@ -15,7 +15,7 @@
     font-size: large;
     text-align: center;
     font-weight: bold;
-    text-decoration: solid; /* No estoy seguro de qué efecto específico deseas, pero lo mantengo según tu código. */
+    text-decoration: solid; 
 }
 
 
@@ -100,7 +100,7 @@
 background-color: #000000;
 }
 
-/* En tu archivo create.styles.css o donde gestiones los estilos */
+
 .container {
     margin: 0px 0;
     text-align: center;
@@ -190,12 +190,12 @@ background-color: #000000;
     font-weight: bold;
     text-decoration: bold;
     padding: 16px;
-    border-radius: 8px; /* Puntas redondeadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 
-  /* Media queries para hacerlo responsive */
+
   @media screen and (max-width: 600px) {
     .container {
       width: 100%;

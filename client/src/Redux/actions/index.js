@@ -12,7 +12,7 @@ export const POST_ACTIVITIES = 'POST_ACTIVITIES';
 export const getCountries = () => async (dispatch) => {
   try {
     const response = await axios.get('http://localhost:3001/countries');
-    console.log(response.data); // Verifica la respuesta en la consola
+    console.log(response.data);
     dispatch({
       type: GET_COUNTRIES,
       payload: response.data,
@@ -84,14 +84,14 @@ export const postActivities = (payload) => async () => {
     console.log('Respuesta de POST_ACTIVITIES:', response);
   } catch (error) {
     if (error.response) {
-      // La solicitud fue hecha y el servidor respondió con un estado de error
+   
       console.error('Error en la respuesta del servidor:', error.response.data);
       console.error('Código de estado:', error.response.status);
     } else if (error.request) {
-      // La solicitud fue hecha pero no se recibió respuesta
+    
       console.error('No se recibió respuesta del servidor:', error.request);
     } else {
-      // Ocurrió un error antes de enviar la solicitud
+    
       console.error('Error durante la configuración de la solicitud:', error.message);
     }
   }

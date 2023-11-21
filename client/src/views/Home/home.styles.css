@@ -6,8 +6,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(
         to left,
-        #8B4513 0%,  /* Marrón */
-        #F5DEB3 100% /* Beige */
+        #8B4513 0%,  
+        #F5DEB3 100% 
     );
     text-align: center;
 }
@@ -18,7 +18,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 76px;
-    color: #000; /* Negro */
+    color: #000; 
     font-family: "Bigelow Rules";
 }
 
@@ -30,18 +30,18 @@ body {
     justify-content: space-around;
     box-sizing: border-box;
     background: linear-gradient(to bottom, #ccaf79, #ccaf79 20px, transparent 250px, transparent);
-    color: #F5DEB3; /* Texto blanco para contrastar con el fondo oscuro */
+    color: #F5DEB3; 
     font-family: Arial, sans-serif;
 }
 .home2{
     margin: 0;
     width: 100%;
-    max-width: 1200px; /* O cualquier otro valor máximo que desees */
+    max-width: 1200px; 
     height: 300px;
      margin: 0;
   padding: 20px;
   box-sizing: border-box;
-  background: linear-gradient(to bottom, #ffffff, #f8f8f800); /* Puedes cambiar los códigos de color según tus preferencias */
-  color: #ffffff; /* Texto blanco para contrastar con el fondo oscuro */
+  background: linear-gradient(to bottom, #ffffff, #f8f8f800); 
+  color: #ffffff; 
   font-family: Arial, sans-serif;
 }

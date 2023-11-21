@@ -13,8 +13,8 @@
   }
   
   .cartas:hover {
-    transform: translateY(-5px); /* Eleva ligeramente el componente al pasar el ratón */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Agrega una sombra para dar profundidad */
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
   }
   
   .allDatos {
@@ -34,14 +34,14 @@
   }
   .nombre {
     text-align: center;
-    color: #000; /* Negro */
+    color: #000; 
     text-decoration: none;
-    transition: color 1.0s ease; /* Agrega una transición suave al color del texto */
+    transition: color 1.0s ease; 
   }
   
   .nombre:hover {
-    color: #ffffff; /* Cambia el color del texto al pasar el ratón */
-    border-color: #000; /* Negro */
+    color: #ffffff;
+    border-color: #000; 
   }
   
   .datos {
@@ -57,7 +57,7 @@
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
       .datos:hover {
-        transform: translateY(-2px); /* Eleva ligeramente el componente al pasar el ratón */
-        box-shadow: 2 2px 2px rgba(0, 0, 0, 0.2); /* Agrega una sombra para dar profundidad */
+        transform: translateY(-2px); 
+        box-shadow: 2 2px 2px rgba(0, 0, 0, 0.2);
       }
   

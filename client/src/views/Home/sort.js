@@ -1,4 +1,4 @@
-// Función de ordenamiento por nombre
+
 export const sortByName = (countries, direction) => {
     return [...countries].sort((a, b) => {
       const factor = direction === 'asc' ? 1 : -1;
@@ -6,7 +6,7 @@ export const sortByName = (countries, direction) => {
     });
   };
   
-  // Función de ordenamiento por población
+
   export const sortByPopulation = (countries, direction) => {
     return [...countries].sort((a, b) => {
       const factor = direction === 'asc' ? 1 : -1;

@@ -33,13 +33,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Country} = sequelize.models;
 const { Activity} = sequelize.models;
 
-// Aca vendrian las relaciones
+
 Country.belongsToMany(Activity, { through: 'CountryActivity', as: 'activities', foreignKey: 'CountryId' });
 Activity.belongsToMany(Country, { through: 'CountryActivity', as: 'countries', foreignKey: 'ActivityId' });
 
-// Product.hasMany(Reviews);
+
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models,
+  conn: sequelize,    
 };

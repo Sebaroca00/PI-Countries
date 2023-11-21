@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background: linear-gradient(to bottom, #ccaf79, #ccaf79 20px, transparent 250px, transparent);
-    color: #F5DEB3; /* Texto blanco para contrastar con el fondo oscuro */
+    color: #F5DEB3;
     filter: blur(1px); 
 }
 
@@ -31,7 +31,7 @@
     border-radius: 10px;
     padding: 15px;
     transition: background-color 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Añade una sombra */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .centered:hover {

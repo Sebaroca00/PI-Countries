@@ -97,7 +97,7 @@ const submitHandler = async (event) => {
     setSelectedCountries([]);
   } catch (error) {
     console.error("Error al crear actividad:", error);
-    setSuccessMessage(""); // Limpia el mensaje de éxito en caso de error
+    setSuccessMessage("");
   }
 };
 
@@ -113,7 +113,7 @@ const submitHandler = async (event) => {
   
   const modalStyle = {
     content: {
-      color: successMessage, // Cambia el color del texto según el tipo de mensaje
+      color: successMessage, 
     },
   };
   return (
@@ -195,7 +195,7 @@ const submitHandler = async (event) => {
             </option>
           ))}
         </select>
-        <span className="errors">{error.country}</span> {/* Nuevo campo de error */}
+        <span className="errors">{error.country}</span>
       </div>
           <div className="selected-countries">
             <p className="container2">Países Seleccionados:</p>

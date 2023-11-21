@@ -39,7 +39,7 @@ function rootReducer(state = initialState, action) {
       case GET_BY_DETAIL:
   return {
     ...state,
-    detailedCountry: action.payload, // Cambia allCountriesCopy a detailedCountry o el nombre que prefieras
+    detailedCountry: action.payload, 
   };
   case GET_ACTIVITY:
     return {
@@ -98,7 +98,6 @@ function rootReducer(state = initialState, action) {
       case POST_ACTIVITIES:
         return {
           ...state,
-          // Puedes manejar la respuesta si es necesario aquí.
         };
 
     default:

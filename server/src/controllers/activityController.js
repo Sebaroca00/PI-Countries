@@ -18,7 +18,7 @@ const createActivityDB = async (name, difficulty, duration, season, countryCodes
 const getActivities = async (req, res) => {
   try {
     const activities = await Activity.findAll({
-      attributes: { exclude: ['updatedAt','createdAt'] }, // Excluye el campo 'updatedAt'
+      attributes: { exclude: ['updatedAt','createdAt'] },
       include: [
         {
           model: Country,

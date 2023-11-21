@@ -6,14 +6,14 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom, #ccaf79, #ccaf79 20px, transparent 250px, transparent);
-    color: #F5DEB3; /* Texto blanco para contrastar con el fondo oscuro */
+    color: #F5DEB3; 
   }
   
   .detail-header2 {
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 48px;
-    color: #000; /* Negro */
+    color: #000; 
     font-family: "Bigelow Rules";
   }
 
@@ -21,7 +21,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 76px;
-    color: #000; /* Negro */
+    color: #000; 
     font-family: "Bigelow Rules";
   }
   
@@ -59,7 +59,7 @@
     margin: 5px 0;
   text-align: center;
   color: rgb(0, 0, 0);
-  background-color: #ccaf79; /* Puedes ajustar el color de fondo según tus preferencias */
+  background-color: #ccaf79;
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 8px;
@@ -68,16 +68,16 @@
   }
   
   .detail-info:hover {
-    background-color: #5a452e; /* Cambia el color de fondo al hacer hover */
-    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    background-color: #5a452e;
+    transition: background-color 0.3s ease; 
   }
   
   .detail-info p:hover {
-    background-color: #8b6f4d; /* Cambia el color de fondo al hacer hover en los párrafos */
-    transition: background-color 0.3s ease; /* Agrega una transición suave */
-    font-size: 16px; /* Ajusta el tamaño del texto al hacer hover */
+    background-color: #8b6f4d; 
+    transition: background-color 0.3s ease; 
+    font-size: 16px; 
   }
   
 
-  /* Add more styles as needed */
+
   

@@ -17,8 +17,8 @@
   }
   
   .pagination-controls button.active {
-    background-color: #000000; /* Cambia el color de fondo cuando está seleccionado */
-    color: #ffffff; /* Cambia el color del texto cuando está seleccionado */
+    background-color: #000000;
+    color: #ffffff; 
   }
   
   .pagination-controls button[disabled] {
