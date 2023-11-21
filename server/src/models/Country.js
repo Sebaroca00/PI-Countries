@@ -4,20 +4,20 @@ module.exports = (sequelize) => {
   const Country = sequelize.define('Country', {
     code: {
       type: DataTypes.STRING(3),
-      allowNull: true,
+      allowNull: false,
       primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     flagImage: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     continent: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     capital: {
       type: DataTypes.STRING,

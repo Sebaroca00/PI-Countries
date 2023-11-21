@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   allCountries: [],
-  filteredCountries: [],  // Nuevo estado para los países filtrados
+  filteredCountries: [],
   detailedCountry: [],
   activities: [],
   filters: {

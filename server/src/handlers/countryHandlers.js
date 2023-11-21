@@ -22,7 +22,7 @@ const getCountriesHandler = async (req, res) => {
             res.status(400).json({ error: error.message });
         }
     } else {
-        res.status(200).send('Todos los países');
+        res.status(404).send('Por favor introduce un nombre valido');
     }
 };
 

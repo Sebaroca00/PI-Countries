@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../Redux/actions";
 import { getCountries } from "../../Redux/actions";
 import validate from  './validate'
-import Modal from 'react-modal';
+
 import "./create.styles.css";
 
-Modal.setAppElement('#root');
+
 
 function Create() {
   const dispatch = useDispatch();
@@ -108,7 +108,7 @@ const submitHandler = async (event) => {
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    alert(successMessage);
   };
   
   const modalStyle = {
@@ -129,6 +129,7 @@ const submitHandler = async (event) => {
               className="input"
               value={input.name}
               onChange={handleChange}
+              autoComplete="off"
             />
             <span className="errors">{error.name}</span>
           </div>
@@ -140,6 +141,7 @@ const submitHandler = async (event) => {
               className="input"
               value={input.difficulty}
               onChange={handleChange}
+              autoComplete="off"
             />
             <span className="errors">{error.difficulty}</span>
           </div>
@@ -151,6 +153,7 @@ const submitHandler = async (event) => {
               className="input"
               value={input.duration}
               onChange={handleChange}
+              autoComplete="off"
             />
             <span className="errors">{error.duration}</span>
           </div>
@@ -161,6 +164,7 @@ const submitHandler = async (event) => {
               className="input"
               value={input.season}
               onChange={handleChange}
+              autoComplete="off"
             >
               <option className="container" value="">Selecciona una temporada</option>
               <option className="container" value="Verano">Verano</option>
@@ -179,6 +183,7 @@ const submitHandler = async (event) => {
               placeholder="Buscar países..."
               value={searchTerm}
               onChange={handleChange}
+              autoComplete="off"
             />
                 <select name="countries" className="input" onChange={handleChange}>
           <option className="container" value="">
@@ -208,19 +213,7 @@ const submitHandler = async (event) => {
               ))}
             </ul>
           </div>
-          <button className="boton" type="submit">
-          Crear
-        </button>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Mensaje de éxito"
-          className="modal"
-          style={modalStyle}
-        >
-          <p className="success-message">{successMessage}</p>
-          <button onClick={closeModal}>Aceptar</button>
-        </Modal>
+          <button className="boton" onClick={closeModal}>Aceptar</button>
         </div>
       </form>
     </div>

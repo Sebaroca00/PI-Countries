@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch} from 'react-redux';
 import { filterByContinent } from '../../Redux/actions/index';
 import { getActivities } from '../../Redux/actions';
 import { Link } from 'react-router-dom';
@@ -11,19 +11,16 @@ function NavBar({
   handleActivityFilter,
   activities,
   handleSortChange,
-  navSortType,         // Cambiado el nombre de la prop para evitar conflictos
-  navSortDirection     // Cambiado el nombre de la prop para evitar conflictos
+  navSortType,         
+  navSortDirection     
 })
 
-{  const dispatch = useDispatch();
-  const [sortType, setSortType] = useState('name');
-  const [sortDirection, setSortDirection] = useState('asc');
 
+{  
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
-
-  const continentFilter = useSelector((state) => state.filters.continent);
 
   const handleContinentFilter = (continent) => {
     dispatch(filterByContinent(continent));
@@ -48,11 +45,11 @@ function NavBar({
         <option value="Asia">Asia</option>
         <option value="Oceania">Oceania</option>
         <option value="Antarctic">Antartida</option>
-        {/* Agrega opciones para otros continentes según tus necesidades */}
+
       </select>
       <select className="button-filter" onChange={(e) => handleActivityFilter(e.target.value)}>
         <option  value="">Seleccione una Actividad</option>
-        {/* Mapear las actividades disponibles desde las props */}
+
         {activities.map((activity) => (
           <option key={activity.id} value={activity.name}>
             {activity.name}
@@ -69,8 +66,8 @@ function NavBar({
         {navSortType === 'name' && navSortDirection === 'desc' && '↓'}
       </button>
       <button className="button-filter" onClick={() => handleSortChange('population')}>
-        Ordenar por Población {navSortType === 'population' && navSortDirection === 'asc' && '↑'}
-        {navSortType === 'population' && navSortDirection === 'desc' && '↓'}
+        Ordenar por Población {navSortType === 'population' && navSortDirection === 'asc' && '↓'}
+        {navSortType === 'population' && navSortDirection === 'desc' && '↑'}
       </button>
       </div>
    </div>

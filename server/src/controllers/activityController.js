@@ -4,9 +4,7 @@ const {Activity, Country} = require("../db")
 const createActivityDB = async (name, difficulty, duration, season, countryCodes) => {
   try {
     const activity = await Activity.create({ name, difficulty, duration, season });
-
     if (countryCodes && Array.isArray(countryCodes)) {
-      // Asociar la actividad con los países
       const countries = await Country.findAll({ where: { code: countryCodes } });
       await activity.setCountries(countries);
     }
@@ -20,7 +18,7 @@ const createActivityDB = async (name, difficulty, duration, season, countryCodes
 const getActivities = async (req, res) => {
   try {
     const activities = await Activity.findAll({
-      attributes: { exclude: ['updatedAt'] }, // Excluye el campo 'updatedAt'
+      attributes: { exclude: ['updatedAt','createdAt'] }, // Excluye el campo 'updatedAt'
       include: [
         {
           model: Country,
