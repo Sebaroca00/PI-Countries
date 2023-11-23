@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../Redux/actions";
 import { getCountries } from "../../Redux/actions";
-import validate from  './validate'
+import validate from  './validate';
 
 import "./create.styles.css";
-
-
 
 function Create() {
   const dispatch = useDispatch();
@@ -14,20 +12,8 @@ function Create() {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch(getCountries());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const filtered = countries.filter((country) =>
-      country.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCountries(filtered);
-  }, [countries, searchTerm]);
-
+  
+  
   const [input, setInput] = useState({
     name: "",
     difficulty: "",
@@ -42,6 +28,17 @@ function Create() {
     season: "",
   });
 
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const filtered = countries.filter((country) =>
+      country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCountries(filtered);
+  }, [countries, searchTerm]);
+
   const validateForm = () => {
     const newError = validate(input, selectedCountries);
     setError(newError);
@@ -49,57 +46,58 @@ function Create() {
     return Object.values(newError).every((val) => val === "");
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
+    let newInput;
+    let newSelectedCountries;
 
-  if (name === "countries") {
-    const countryCode = countries.find((country) => country.name === value)?.code;
-    setSelectedCountries([...selectedCountries, countryCode]);
-  } else if (name === "search") {
-    setSearchTerm(value);
-  } else {
-    setInput({
-      ...input,
-      [name]: value,
-    });
-  }
+    if (name === "countries") {
+      const countryCode = countries.find((country) => country.name === value)?.code;
+      newSelectedCountries = [...selectedCountries, countryCode];
+      setSelectedCountries(newSelectedCountries);
+      newInput = { ...input, [name]: newSelectedCountries };
+    } else if (name === "search") {
+      setSearchTerm(value);
+      newInput = input;
+    } else {
+      newInput = { ...input, [name]: value };
+    }
 
-  validateForm();
-};
+    const newError = validate(newInput, newSelectedCountries || selectedCountries);
+    setError(newError);
+    setInput(newInput);
+  };
 
-const submitHandler = async (event) => {
-  event.preventDefault();
+  const submitHandler = async (event) => {
+    event.preventDefault();
 
+    if (!validateForm()) {
+      alert("Faltan completar campos");
+      return;
+    }
 
-  if (!validateForm()) {
-    setModalIsOpen(true);
-    setSuccessMessage("Faltan completar campos");
-    return;
-  }
+    try {
+      const formData = {
+        ...input,
+        countryCodes: selectedCountries,
+      };
 
-  try {
-    const formData = {
-      ...input,
-      countryCodes: selectedCountries,
-    };
-
-    await dispatch(postActivities(formData));
-    setSuccessMessage("Actividad creada con éxito");
-    setModalIsOpen(true);
-    setInput({
-      name: "",
-      difficulty: "",
-      duration: "",
-      season: "",
-      countryCodes: [],
-    });
-    setSelectedCountries([]);
-  } catch (error) {
-    console.error("Error al crear actividad:", error);
-    setSuccessMessage("");
-  }
-};
+      await dispatch(postActivities(formData));
+      alert("Actividad creada con éxito");
+      setInput({
+        name: "",
+        difficulty: "",
+        duration: "",
+        season: "",
+        countryCodes: [],
+      });
+      setSelectedCountries([]);
+    } catch (error) {
+      console.error("Error al crear actividad:", error);
+      alert("Hubo un error al crear la actividad");
+    }
+  };
 
   const removeSelectedCountry = (selectedCountry) => {
     setSelectedCountries(
@@ -107,15 +105,6 @@ const submitHandler = async (event) => {
     );
   };
 
-  const closeModal = () => {
-    alert(successMessage);
-  };
-  
-  const modalStyle = {
-    content: {
-      color: successMessage, 
-    },
-  };
   return (
     <div className="formConteiner">
       <h1>CREA TU ACTIVIDAD TURÍSTICA</h1>
@@ -185,18 +174,18 @@ const submitHandler = async (event) => {
               onChange={handleChange}
               autoComplete="off"
             />
-                <select name="countries" className="input" onChange={handleChange}>
-          <option className="container" value="">
-            Selecciona un país
-          </option>
-          {filteredCountries.map((country) => (
-            <option className="container" key={country.code} value={country.name}>
-              {country.code} - {country.name}
-            </option>
-          ))}
-        </select>
-        <span className="errors">{error.country}</span>
-      </div>
+            <select name="countries" className="input" onChange={handleChange}>
+              <option className="container" value="">
+                Selecciona un país
+              </option>
+              {filteredCountries.map((country) => (
+                <option className="container" key={country.code} value={country.name}>
+                  {country.code} - {country.name}
+                </option>
+              ))}
+            </select>
+            <span className="errors">{error.country}</span>
+          </div>
           <div className="selected-countries">
             <p className="container2">Países Seleccionados:</p>
             <ul>
@@ -213,7 +202,7 @@ const submitHandler = async (event) => {
               ))}
             </ul>
           </div>
-          <button className="boton" onClick={closeModal}>Aceptar</button>
+          <button className="boton" type="submit">Crear</button>
         </div>
       </form>
     </div>
