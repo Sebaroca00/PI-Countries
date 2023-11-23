@@ -6,6 +6,9 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 
   return (
     <div className="pagination-controls">
+      <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
+        {'←'}
+      </button>
       {pageNumbers.map((page) => (
         <button
           key={page}
@@ -15,8 +18,12 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
           {page}
         </button>
       ))}
+      <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        {'→'}
+      </button>
     </div>
   );
 }
 
 export default Pagination;
+

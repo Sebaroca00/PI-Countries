@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivities } from "../../Redux/actions";
 import { getCountries } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
 import validate from  './validate';
 
 import "./create.styles.css";
@@ -12,6 +13,7 @@ function Create() {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const navigate = useNavigate();
   
   
   const [input, setInput] = useState({
@@ -85,6 +87,7 @@ function Create() {
 
       await dispatch(postActivities(formData));
       alert("Actividad creada con éxito");
+      navigate("/home");
       setInput({
         name: "",
         difficulty: "",
