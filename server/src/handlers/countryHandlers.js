@@ -1,8 +1,7 @@
 const { getCountryByName, getCountryById, loadCountriesToDatabase, getAllCountries } = require('../controllers/countryControllers');
 
 const getAllCountriesHandler = async (req, res) => {
-    try {
-        
+    try {   
         const countries = await getAllCountries();
         res.status(200).json(countries);
       } catch (error) {
@@ -28,7 +27,6 @@ const getCountriesHandler = async (req, res) => {
 
 const getDetailHandler = async (req, res) => {
     const { id } = req.params;
-
     try {
         const response = await getCountryById(id);
         res.status(200).json(response);

@@ -39,11 +39,9 @@ const getCountryById = async (id) => {
       include: [{ model: Activity, as: 'activities' }],
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
-
     if (!country) {
       return { error: 'País no encontrado' };
     }
-
     return country;
   } catch (error) {
     console.error('Error al obtener el país por ID:', error);
